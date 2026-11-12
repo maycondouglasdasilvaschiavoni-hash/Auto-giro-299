@@ -1,0 +1,42 @@
+# Auto Giro 299 — site com painel online
+
+## O que vem neste pacote
+- `index.html`: site público + painel administrativo.
+- `config.js`: local para colar a URL e a chave pública (anon) do Supabase.
+- `supabase.sql`: tabelas, regras de segurança e armazenamento de fotos.
+
+## Antes de publicar
+Este pacote precisa ser conectado ao seu próprio projeto Supabase. Não publique antes de completar os passos abaixo.
+
+### 1. Criar o Supabase
+1. Acesse https://supabase.com e crie uma conta/projeto (plano Free).
+2. Guarde a senha do projeto em local seguro; não envie para o ChatGPT.
+3. Abra Authentication > Users > Add user e crie o usuário do seu pai com e-mail e senha fortes.
+4. Abra SQL Editor > New query.
+5. Abra o arquivo `supabase.sql`, copie tudo e cole no SQL Editor.
+6. No script, substitua TODAS as ocorrências de `admin@exemplo.com` pelo e-mail exato do usuário criado para seu pai. Rode (Run).
+7. Vá em Project Settings > API. Copie Project URL e a chave `anon`/`publishable` (NÃO use `service_role` nem `secret`).
+8. Abra `config.js` e substitua os dois textos `COLE_AQUI...` pelos valores copiados.
+
+### 2. Publicar pelo GitHub Pages
+1. Entre em https://github.com e crie um repositório novo, por exemplo `auto-giro-299`.
+2. Envie para o repositório os três arquivos: `index.html`, `config.js` e `supabase.sql` (o SQL pode ficar no repositório, mas não é necessário para o site rodar).
+3. No repositório, abra Settings > Pages.
+4. Em Build and deployment, escolha Deploy from a branch.
+5. Escolha a branch `main` e a pasta `/ (root)`, depois Save.
+6. Aguarde o GitHub mostrar o endereço do site na mesma tela de Pages.
+
+### 3. Testar
+1. Abra o endereço público do GitHub Pages.
+2. Clique em “Área do administrador”.
+3. Entre com o e-mail e senha criados no Supabase.
+4. Cadastre um serviço e uma promoção de teste; confira se aparecem na página inicial.
+5. Envie uma foto de teste e confira a galeria.
+
+## Importante
+- O site usa a chave pública `anon` do Supabase, que pode ficar no navegador. A segurança depende das políticas RLS criadas no SQL.
+- Nunca coloque a chave `service_role`/`secret` em `config.js` ou no GitHub.
+- Não compartilhe a senha do Supabase.
+- O site depende de conexão com a internet para carregar o banco e as fotos.
+- O plano gratuito tem limites e pode mudar; consulte a página de preços do Supabase e GitHub.
+- O painel atual permite adicionar/excluir serviços e promoções, atualizar aviso, enviar/excluir fotos e trocar logo. Para alterar um item existente, exclua e cadastre novamente.
